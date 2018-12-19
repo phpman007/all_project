@@ -213,7 +213,7 @@
             <div class="control-group">
               <div class="form-group floating-label-form-group controls floating-label-form-group-with-value">
                 <label>{{ config('fields.attachment.field_name') }}</label>
-                {{Form::file('attachement', ['class'=>'form-control', 'multiple'=>'true', 'accept'=>'.png,.jpg,.jpeg,.gif'])}}
+                {{Form::file('attachement[]', ['class'=>'form-control', 'multiple'=>'true', 'accept'=>'.png,.jpg,.jpeg,.gif'])}}
 
                 <p class="help-block text-danger"></p>
                 <small><b>หมายเหตุ</b> :ไฟล์ .jpg, .jpeg, .gif, .bmp, .png, .pdf เท่านั้น</small>
