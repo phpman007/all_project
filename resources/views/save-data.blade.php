@@ -33,7 +33,7 @@
             <div class="control-group">
               <div class="form-group floating-label-form-group controls floating-label-form-group-with-value">
                 <label>Email</label>
-                <input type="text" class="form-control" readonly placeholder="Email" id="name" required="" data-validation-required-message="Please enter your name." value=" xxxxxxxx@xxxxx.com" aria-invalid="false">
+                <input type="text" class="form-control" readonly placeholder="Email" id="name" required="" data-validation-required-message="Please enter your name." value="{{ Auth::user()->email }}" aria-invalid="false">
                 <p class="help-block text-danger"></p>
               </div>
             </div>

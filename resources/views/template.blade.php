@@ -52,6 +52,9 @@
             </li>
           @else
           <li class="nav-item">
+            <a class="nav-link" href="{{ url('report-data') }}">รายการ</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{{ url('save-data') }}">บันทึกข้อมูล</a>
           </li>
             <li class="nav-item">

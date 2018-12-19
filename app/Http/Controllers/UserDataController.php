@@ -102,9 +102,14 @@ class UserDataController extends Controller
   * @param  int  $id
   * @return \Illuminate\Http\Response
   */
-  public function show($id)
+  public function show()
   {
-    //
+    $items = \App\User::where('id',Auth::user()->id)->with(['dataUser'])->first();
+
+    $items = $items->dataUser()->with(['GroupData'])->paginate();
+  
+
+    return view('report-data', compact('items'));
   }
 
   /**

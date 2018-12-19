@@ -15,7 +15,7 @@
             <div class="control-group">
               <div class="form-group floating-label-form-group controls floating-label-form-group-with-value">
                 <label>ชื่อ - นามสกุล</label>
-                <input type="text" class="form-control" readonly placeholder="Email" id="name" required="" data-validation-required-message="Please enter your name." value="xxxxxx xxxxxxxx" aria-invalid="false">
+                <input type="text" class="form-control" readonly placeholder="Email" id="name" required="" data-validation-required-message="Please enter your name." value="{{ Auth::user()->name }}" aria-invalid="false">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
@@ -24,7 +24,7 @@
             <div class="control-group">
               <div class="form-group floating-label-form-group controls floating-label-form-group-with-value">
                 <label>จังหวัด</label>
-                <input type="text" class="form-control" readonly placeholder="Email" id="name" required="" data-validation-required-message="Please enter your name." value="xxxxxxxx" aria-invalid="false">
+                <input type="text" class="form-control" readonly placeholder="Email" id="name" required="" data-validation-required-message="Please enter your name." value="{{ Auth::user()->province }}" aria-invalid="false">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
@@ -33,7 +33,7 @@
             <div class="control-group">
               <div class="form-group floating-label-form-group controls floating-label-form-group-with-value">
                 <label>Email</label>
-                <input type="text" class="form-control" readonly placeholder="Email" id="name" required="" data-validation-required-message="Please enter your name." value=" xxxxxxxx@xxxxx.com" aria-invalid="false">
+                <input type="text" class="form-control" readonly placeholder="Email" id="name" required="" data-validation-required-message="Please enter your name." value="{{ Auth::user()->email }}" aria-invalid="false">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
@@ -46,7 +46,6 @@
             <table class="table">
               <thead>
                 <tr class="accordion-toggle"  >
-                  <th>ลำดับ</th>
                   <th>Field1</th>
                   <th>Field2</th>
                   <th>Field3</th>
@@ -56,43 +55,44 @@
                 </tr>
               </thead>
               <tbody>
+                @foreach ($items as $key => $item)
+
                 <tr class="accordion-toggle" >
-                  <td>1</td>
-                  <td>xxxxx</td>
-                  <td>xxxxx</td>
-                  <td>xxxxx</td>
-                  <td><a class=""  data-toggle="collapse" data-target="#collapseTwo" href="javascript:void(0)">คลิ๊กเพื่อดูรายละเอียด</a></td>
+                  <td>{{$item->GroupData->title}}</td>
+                  <td>{{$item->field2}}</td>
+                  <td>{{$item->field3}}</td>
+                  <td><a class=""  data-toggle="collapse" data-target="#collapse{{$key}}" href="javascript:void(0)">คลิ๊กเพื่อดูรายละเอียด</a></td>
                   <td>แก้ไข</td>
                   <td>ลบ</td>
                 </tr>
                 <tr>
                   <td colspan="6">
-                    <div id="collapseTwo" class="collapse in">
+                    <div id="collapse{{$key}}" class="collapse">
                       <div class="row">
                         <div class="col-md-3">
-                          Date1 : XXXXXXXX
+                          Date1 : {{$item->date1}}
                         </div>
                         <div class="col-md-3">
-                          Field4 : XXXXXXXX
+                          Field4 : {{$item->field4}}
                         </div>
                         <div class="col-md-3">
-                          Field5 : XXXXXXXX
+                          Field5 : {{$item->field5}}
                         </div>
                         <div class="col-md-3">
-                          Field6 : XXXXXXXX
+                          Field6 : {{$item->field6}}
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-5">
-                          Text1 : XXXXXXXX
+                          Text1 : {{$item->text1}}
                         </div>
                         <div class="col-md-5">
-                          Date2 : XXXXXXXX
+                          Date2 : {{$item->date2}}
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-12">
-                          Remark : XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX <br>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                          Remark : {{$item->remark}}
                         </div>
 
                       </div>
@@ -107,58 +107,9 @@
                     </div>
                   </div></td>
                 </tr>
-                <tr class="accordion-toggle"  >
-                  <td>2</td>
-                  <td>xxxxx</td>
-                  <td>xxxxx</td>
-                  <td>xxxxx</td>
-                  <td><a class=""  data-toggle="collapse" data-target="#collapseTwo-2" href="javascript:void(0)">คลิ๊กเพื่อดูรายละเอียด</a></td>
-                  <td>แก้ไข</td>
-                  <td>ลบ</td>
-                </tr>
-                <tr>
-                  <td colspan="6">
-                    <div id="collapseTwo-2" class="collapse in">
-                      <div class="row">
-                        <div class="col-md-3">
-                          Date1 : XXXXXXXX
-                        </div>
-                        <div class="col-md-3">
-                          Field4 : XXXXXXXX
-                        </div>
-                        <div class="col-md-3">
-                          Field5 : XXXXXXXX
-                        </div>
-                        <div class="col-md-3">
-                          Field6 : XXXXXXXX
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-5">
-                          Text1 : XXXXXXXX
-                        </div>
-                        <div class="col-md-5">
-                          Date2 : XXXXXXXX
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          Remark : XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX <br>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                        </div>
 
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          Attachement : xxxxxxxxx.pdf
-                          <br>
-                          <img style="max-width:300px;max-height:300px;" src="https://images.fireside.fm/podcasts/images/b/bc7f1faf-8aad-4135-bb12-83a8af679756/cover_medium.jpg" class="img-responsive" alt="">
-                        </div>
+                @endforeach
 
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
             </tbody>
 
           </table>

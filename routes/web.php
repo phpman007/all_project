@@ -30,6 +30,4 @@ Route::post('save-data', 'UserDataController@store')->middleware('auth');
 
 Route::resource('group-data', 'GroupDataController')->middleware('auth:admin');
 
-Route::get('report-data', function () {
-    return view('report-data');
-})->middleware('auth');
+Route::get('report-data', 'UserDataController@show')->middleware('auth');

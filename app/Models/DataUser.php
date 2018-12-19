@@ -29,4 +29,8 @@ class DataUser extends Model
     public function userCreate () {
       return $this->belongsTo(App\User::class);
     }
+
+    public function GroupData () {
+      return $this->belongsTo(GroupData::class, 'field1');
+    }
 }
