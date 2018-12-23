@@ -64,9 +64,9 @@
                 <a class="nav-link" href="{{ url('logout') }}">ออกจากระบบ</a>
               </li>
           @endif
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a class="nav-link" href="contact.html">ติดต่อเรา</a>
-            </li>
+            </li> --}}
           </ul>
         </div>
       </div>

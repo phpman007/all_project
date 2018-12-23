@@ -67,6 +67,18 @@ return [
     'field_name' => 'Field6',
     'validate' => 'required|max:255',
   ],
+  'field7' => [
+    'field_name' => 'Field7',
+    'validate' => 'required|max:255',
+  ],
+  'field8' => [
+    'field_name' => 'Field8',
+    'validate' => 'required|max:255',
+  ],
+  'field9' => [
+    'field_name' => 'Field9',
+    'validate' => 'required|max:255',
+  ],
   'number1' => [
     'field_name' => 'number',
     'validate' => 'required',
@@ -89,8 +101,9 @@ return [
   ],
   'attachment' => [
     'field_name' => 'Upload File',
-    'validate' => 'required|max:10000|mimes:jpg,jpeg,pdf,gif,png,bmp', //a required, max 10000kb
+    'validate' => 'max:10000|mimes:jpg,jpeg,pdf,gif,png,bmp', //a required, max 10000kb
   ],
+  'policy' => 'policy Edite from Config/fields.php ==>> policy field',
 
 ]
 

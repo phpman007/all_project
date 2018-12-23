@@ -1,5 +1,14 @@
 @extends('template')
 @section('content')
+  <nav aria-label="breadcrumb" style="font-size:12px">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{url('/')}}">หน้าแรก</a></li>
+        <li class="breadcrumb-item"><a href="{{url('save-data')}}">บันทึกรายการข้อมูล</a></li>
+      <li class="breadcrumb-item active" aria-current="page">
+        Add & Edit Group Data
+      </li>
+    </ol>
+  </nav>
     <br>
 
     <h2 class="header-h">Add & Edit Group Data</h2>

@@ -1,5 +1,17 @@
 @extends('template')
 @section('content')
+  <nav aria-label="breadcrumb" style="font-size:12px">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{url('/')}}">หน้าแรก</a></li>
+      <li class="breadcrumb-item active" aria-current="page">
+        @if (!isset($user))
+          สมัครใช้บริการ
+        @else
+          แก้ไขข้อมูลส่วนตัว
+        @endif
+      </li>
+    </ol>
+  </nav>
   <br>
   <h2 class="header-h">
     @if (!isset($user))
@@ -146,10 +158,17 @@
                                 </div>
                               @endif
                               @if (!isset($user))
-                                <label class="container-checkbox"> I have read and agree to the <a href="#">Terms of Service</a>
+                                <label class="container-checkbox"> I have read and agree to the
+                                  <a href="#"data-toggle="collapse" data-target="#collapse">Terms of Service</a>
                                   <input name="agree" type="checkbox" value='1'>
                                   <span class="checkmark"></span>
                                 </label>
+
+                                <div id="collapse" class="collapse" style="margin-top:15px">
+                                  <div class="card card-body">
+                                    {{config('fields.policy')}}
+                                  </div>
+                                </div>
                               @endif
                             </div>
                           </div>

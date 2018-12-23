@@ -1,5 +1,13 @@
 @extends('template')
 @section('content')
+  <nav aria-label="breadcrumb" style="font-size:12px">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{url('/')}}">หน้าแรก</a></li>
+      <li class="breadcrumb-item active" aria-current="page">
+        เข้าสู่ระบบ
+      </li>
+    </ol>
+  </nav>
     <br>
     @if (!Auth::check())
     <h2 class="header-h">Sign in</h2>

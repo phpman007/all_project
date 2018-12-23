@@ -1,6 +1,13 @@
 @extends('template')
 @section('content')
-
+  <nav aria-label="breadcrumb" style="font-size:12px">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{url('/')}}">หน้าแรก</a></li>
+      <li class="breadcrumb-item active" aria-current="page">
+        รายการ
+      </li>
+    </ol>
+  </nav>
   <br>
   <h2 class="header-h">รายงานข้อมูล <small class="pull-right" style="font-size:15px">บันทึกข้อมูล xxxxxxxxxxxx | ข้อมูล xxxxxxxxxxxx</small></h2>
 
@@ -42,13 +49,13 @@
         <br>
         <div class="row">
           <div class="col-md-12">
-            <h5 class="header-h">รายการ</h5>
-            <table class="table">
+            <h5 class="header-h">รายการ <small><a href="{{url('save-data')}}">บันทึกรายการ</a></small> </h5>
+            <table class="table" style="font-size:15px">
               <thead>
                 <tr class="accordion-toggle"  >
-                  <th>Field1</th>
-                  <th>Field2</th>
-                  <th>Field3</th>
+                  <th>{{ config('fields.field1.field_name') }}</th>
+                  <th>{{ config('fields.field2.field_name') }}</th>
+                  <th>{{ config('fields.field3.field_name') }}</th>
                   <th></th>
                   <th></th>
                   <th></th>
@@ -56,52 +63,54 @@
               </thead>
               <tbody>
                 @foreach ($items as $key => $item)
-
-                <tr class="accordion-toggle" >
+                <tr class="accordion-toggle">
                   <td>{{$item->GroupData->title}}</td>
                   <td>{{$item->field2}}</td>
                   <td>{{$item->field3}}</td>
                   <td><a class=""  data-toggle="collapse" data-target="#collapse{{$key}}" href="javascript:void(0)">คลิ๊กเพื่อดูรายละเอียด</a></td>
-                  <td>แก้ไข</td>
-                  <td>ลบ</td>
+                  <td><a href="{{url('save-data/'.$item->id.'/edit')}}">แก้ไข</a></td>
+                  <td><a onclick="if(!confirm('ยืนยันการทำรายการ')) return false" href="{{url('save-data/'.$item->id.'/destroy')}}">ลบ</a></td>
                 </tr>
-                <tr>
+                <tr  style="font-size:14px">
                   <td colspan="6">
                     <div id="collapse{{$key}}" class="collapse">
                       <div class="row">
                         <div class="col-md-3">
-                          Date1 : {{$item->date1}}
+                          {{ config('fields.date1.field_name') }} : {{$item->date1}}
                         </div>
                         <div class="col-md-3">
-                          Field4 : {{$item->field4}}
+                          {{ config('fields.field4.field_name') }} : {{$item->field4}}
                         </div>
                         <div class="col-md-3">
-                          Field5 : {{$item->field5}}
+                          {{ config('fields.field5.field_name') }} : {{$item->field5}}
                         </div>
                         <div class="col-md-3">
-                          Field6 : {{$item->field6}}
+                          {{ config('fields.field6.field_name') }} : {{$item->field6}}
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-5">
-                          Text1 : {{$item->text1}}
+                          {{ config('fields.text1.field_name') }} : {{$item->text1}}
                         </div>
                         <div class="col-md-5">
-                          Date2 : {{$item->date2}}
+                          {{ config('fields.field2.field_name') }} : {{$item->date2}}
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-12">
-                          Remark : {{$item->remark}}
+                          {{ config('fields.remark.field_name') }} : {{$item->remark}}
                         </div>
 
                       </div>
                       <div class="row">
-                        <div class="col-md-12">
-                          Attachement : xxxxxxxxx.pdf
-                          <br>
-                          <img style="max-width:300px;max-height:300px;" src="https://images.fireside.fm/podcasts/images/b/bc7f1faf-8aad-4135-bb12-83a8af679756/cover_medium.jpg" class="img-responsive" alt="">
-                        </div>
+                        @foreach ($item->getMedia('attachment') as $value)
+                          <div class="col-md-12">
+                            Attachement : <a target="_blank" href="{{asset('/public'.$value->getUrl())}}">{{($value->file_name)}}</a>
+                            <br>
+                            <img style="max-width:300px;max-height:300px;" src="{{asset('/public'.$value->getUrl())}}" class="img-responsive" alt="">
+                          </div>
+                        @endforeach
+
 
                       </div>
                     </div>

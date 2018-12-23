@@ -27,6 +27,10 @@ Route::post('register', 'RegisterController@store');
 
 Route::get('save-data', 'UserDataController@index')->middleware('auth');
 Route::post('save-data', 'UserDataController@store')->middleware('auth');
+Route::get('save-data/{id}/destroy', 'UserDataController@destroy')->middleware('auth');
+Route::get('save-data/{id}/edit', 'UserDataController@edit')->middleware('auth');
+Route::post('save-data/{id}/edit', 'UserDataController@update')->middleware('auth');
+Route::get('save-data/{id}/delete_media/{me_id}', 'UserDataController@mediaDelete')->middleware('auth');
 
 Route::resource('group-data', 'GroupDataController')->middleware('auth:admin');
 
