@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User as Model;
 use Hash, Auth;
+use Vinkla\Alert\Facades\Alert;
 class RegisterController extends Controller
 {
   /**
@@ -26,7 +27,48 @@ class RegisterController extends Controller
   {
     return view('register');
   }
+  public function forget(Request $request) {
+    $request->validate(['email'=>'required|email', 'question_forget_password' => 'required', 'answer_forget_password' => 'required']);
 
+    $user = Model::where('email', $request->email)->first();
+
+    if  (empty($user)) {
+      Alert::info('ไม่พบข้อมูลผู้ใช้งานระบบ กรุณาตรวจสอบใหม่อีกครั้ง');
+      return back();
+    }
+
+    if ($user->question_forget_password != $request->question_forget_password && $user->answer_forget_password != $request->answer_forget_password) {
+      Alert::info('คำถาม คำตอบไม่ถูกต้อง กรุณาตรวจสอบใหม่อีกครั้ง');
+      return back();
+    }
+    $random = str_random(10);
+
+    $user->password = \Hash::make($random);
+
+    $user->save();
+
+    $user->str_password = $random;
+
+    \Mail::send('email.forget-password', ['data' => $user],
+    function ($message) use ($user)
+    {
+      $message
+      ->from('nukdev001@gmail.com')
+      ->to($user->email)->subject('Change Password');
+    });
+    return redirect('/');
+  }
+
+  public function suggestion () {
+    return view('suggestion');
+  }
+  public function suggestionPost(Request $request) {
+    \File::put(public_path('suggestion.txt'), $request->name);
+    return redirect('suggestion');
+  }
+  public function suggestionSave () {
+    return view('suggestion-save');
+  }
   /**
   * Store a newly created resource in storage.
   *

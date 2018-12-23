@@ -166,7 +166,7 @@
 
                                 <div id="collapse" class="collapse" style="margin-top:15px">
                                   <div class="card card-body">
-                                    {{config('fields.policy')}}
+                                    {!! config('fields.policy') !!}
                                   </div>
                                 </div>
                               @endif

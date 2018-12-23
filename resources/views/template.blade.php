@@ -43,6 +43,9 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/') }}">หน้าแรก</a>
             </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('suggestion') }}">ข้อเสนอแนะ</a>
+              </li>
             @if (!Auth::check())
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/') }}">เข้าสู่ระบบ</a>
