@@ -41,7 +41,7 @@ return [
   ],
   'remark' => [
     'field_name' => 'Remark',
-    'validate' => 'required',
+    'validate' => '',
   ],
   'field1' => [
     'field_name' => 'Field1',

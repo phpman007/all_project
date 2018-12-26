@@ -25,8 +25,11 @@ Route::post('forget-password', 'RegisterController@forget');
 
 Route::get('register', 'RegisterController@create');
 Route::get('suggestion', 'RegisterController@suggestion');
-Route::get('suggestion/edit', 'RegisterController@suggestionSave')->middleware('auth:admin');
-Route::post('suggestion/edit', 'RegisterController@suggestionPost')->middleware('auth:admin');
+Route::get('suggestion/{id}/detail', 'RegisterController@suggestionReportView');
+Route::get('suggestion/report', 'RegisterController@suggestionReport');
+Route::post('suggestion', 'RegisterController@postSuggestion');
+// Route::get('suggestion/edit', 'RegisterController@suggestionSave')->middleware('auth:admin');
+// Route::post('suggestion/edit', 'RegisterController@suggestionPost')->middleware('auth:admin');
 Route::post('register', 'RegisterController@store');
 
 Route::get('save-data', 'UserDataController@index')->middleware('auth');

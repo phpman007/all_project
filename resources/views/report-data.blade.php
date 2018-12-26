@@ -9,7 +9,7 @@
     </ol>
   </nav>
   <br>
-  <h2 class="header-h">รายงานข้อมูล <small class="pull-right" style="font-size:15px">บันทึกข้อมูล xxxxxxxxxxxx | ข้อมูล xxxxxxxxxxxx</small></h2>
+  <h2 class="header-h">รายงานข้อมูล <small class="pull-right" style="font-size:15px"><a href="{{url('save-data')}}">บันทึกข้อมูล xxxxxxxxxxxx</a> | <a href="{{url('report-data')}}">ข้อมูล xxxxxxxxxxxx</a></small></h2>
 
   <div class="row">
     <div class="col-lg-12 col-md-12">
@@ -104,10 +104,10 @@
                       </div>
                       <div class="row">
                         @foreach ($item->getMedia('attachment') as $value)
-                          <div class="col-md-12">
+                          <div class="col-md-4">
                             Attachement : <a target="_blank" href="{{asset('/public'.$value->getUrl())}}">{{($value->file_name)}}</a>
                             <br>
-                            <img style="max-width:300px;max-height:300px;" src="{{asset('/public'.$value->getUrl())}}" class="img-responsive" alt="">
+                            <a href="{{asset('/public'.$value->getUrl())}}" data-lightbox="image-{{$value->id}}" data-title="{{($value->file_name)}}{{$item->id}}" ><img style="max-width:100%;max-height:300px;" src="{{asset('/public'.$value->getUrl())}}" class="img-responsive" alt=""> </a>
                           </div>
                         @endforeach
 

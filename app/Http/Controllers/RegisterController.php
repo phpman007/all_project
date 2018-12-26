@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User as Model;
+use App\Models\Suggestion;
 use Hash, Auth;
 use Vinkla\Alert\Facades\Alert;
 class RegisterController extends Controller
@@ -68,6 +69,33 @@ class RegisterController extends Controller
   }
   public function suggestionSave () {
     return view('suggestion-save');
+  }
+  public function postSuggestion(Request $request) {
+      // $request->validate(['email'=>'email|required', 'captcha' => 'required|captcha']);
+
+      $inputs = $request->only(['email', 'detail']);
+
+        $s = new Suggestion($inputs);
+        $s->save();
+
+      Alert::info('บันทึกข้อมูลเรียบร้อยแล้ว');
+
+      return back();
+  }
+
+  public function suggestionReport() {
+    return view('suggestion-report', ['items' => Suggestion::paginate() ]);
+  }
+
+  public function suggestionReportView($id) {
+    $item = Suggestion::find($id);
+
+    $item->status = 1;
+
+    $item->save();
+
+    return view('suggestion-report-view', ['item' => $item ]);
+
   }
   /**
   * Store a newly created resource in storage.

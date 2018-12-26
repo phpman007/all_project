@@ -174,6 +174,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Mews\Captcha\CaptchaServiceProvider::class,
 
     ],
 
@@ -223,7 +224,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Alert' => Vinkla\Alert\Facades\Alert::class
+        'Alert' => Vinkla\Alert\Facades\Alert::class,
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
 
     ],
 

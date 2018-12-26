@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User as Model;
 use Hash, Auth;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Vinkla\Alert\Facades\Alert;
 class LoginController extends Controller
 {
+    use ThrottlesLogins;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         return view('login');
     }
@@ -37,12 +39,33 @@ class LoginController extends Controller
       $user = Model::where('email', $request->email)->first();
 
       if (empty($user)) {
-        return back()->withInput()->withErrors(['email'=> 'อีเมลนี้ไม่อยู่ในระบบ กรุณาตรวจสอบใหม่อีกครั้ง']);
+        // if ($this->hasTooManyLoginAttempts($request)) {
+        //   $this->fireLockoutEvent($request);
+        //   return $this->sendLockoutResponse($request);
+        // }
+        //
+        // if(attempt()) {
+        //   $this->clearLoginAttempts($request);
+        // }else {
+        //   $this->incrementLoginAttempts($request);
+        // }
+        return back()->withInput()->withErrors(['email'=> 'Email หรือ Password ไม่ตรงกับที่กำหนด กรุณาตรวจสอบ Username และ Password อีกครั้ง']);
       }
 
       if (!Hash::check($request->password, $user->password)) {
-        return back()->withInput()->withErrors(['email'=> 'รหัสผ่านผู้ใช้งานไม่ถูกต้อง กรุณาตรวจสอบใหม่อีกครั้ง']);
+        // if ($this->hasTooManyLoginAttempts($request)) {
+        //   $this->fireLockoutEvent($request);
+        //   return $this->sendLockoutResponse($request);
+        // }
+        //
+        // if(attempt()) {
+        //   $this->clearLoginAttempts($request);
+        // }else {
+        //   $this->incrementLoginAttempts($request);
+        // }
+        return back()->withInput()->withErrors(['email'=> 'Email หรือ Password ไม่ตรงกับที่กำหนด กรุณาตรวจสอบ Username และ Password อีกครั้ง']);
       }
+
       if ( $user->user_group == 1) {
         Auth::guard('admin')->login($user);
         Auth::login($user);
@@ -51,8 +74,8 @@ class LoginController extends Controller
         Auth::login($user);
         Alert::info('ยินดีต้อนรับ '. $user->name. ' เข้าสู่ระบบ');
       }
-      
-      return redirect('/')->with('status', ['status'=>true, 'txt'=>'']);
+
+      return redirect('/report-data')->with('status', ['status'=>true, 'txt'=>'']);
     }
 
     /**

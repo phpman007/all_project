@@ -15,8 +15,6 @@ class GroupData extends Model
     ];
 
     public function scopePublish() {
-
       return $this->where('publish', 1);
-
     }
 }

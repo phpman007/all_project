@@ -21,7 +21,7 @@
     @else
       ข้อมูลที่ต้องการแก้ไข
     @endif
-    <small class="pull-right" style="font-size:15px">บันทึกข้อมูล xxxxxxxxxxxx | ข้อมูล xxxxxxxxxxxx</small></h2>
+    <small class="pull-right" style="font-size:15px"><a href="{{url('save-data')}}">บันทึกข้อมูล xxxxxxxxxxxx</a> | <a href="{{url('report-data')}}">ข้อมูล xxxxxxxxxxxx</a></small></h2>
     @foreach ($errors->all() as $key => $value)
       <div class="alert alert-danger alert-dismissible fade in show" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -118,7 +118,7 @@
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>{{ config('fields.date1.field_name') }}</label>
-                {{Form::text('date1', Carbon\Carbon::parse($item->date1)->format('m/d/Y'), ['id'=> 'datepicker1','class'=>"form-control datepicker", 'placeholder'=>"Date1"])}}
+                {{Form::text('date1', Carbon\Carbon::parse($item->date1)->format('d/m/Y'), ['id'=> 'datepicker1','class'=>"form-control datepicker", 'placeholder'=>"Date1"])}}
 
                 <p class="help-block text-danger"></p>
               </div>
@@ -213,7 +213,7 @@
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>{{ config('fields.date2.field_name') }}</label>
-                {{Form::text('date2', Carbon\Carbon::parse($item->date2)->format('m/d/Y'), ['id'=> 'datepicker2', 'class'=>"form-control", 'placeholder'=>"Date2"])}}
+                {{Form::text('date2', Carbon\Carbon::parse($item->date2)->format('d/m/Y'), ['id'=> 'datepicker2', 'class'=>"form-control", 'placeholder'=>"Date2"])}}
 
                 <p class="help-block text-danger"></p>
               </div>
