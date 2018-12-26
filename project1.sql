@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-12-24 23:45:06
+Date: 2018-12-26 23:29:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -200,6 +200,28 @@ CREATE TABLE `password_resets` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `suggestion`
+-- ----------------------------
+DROP TABLE IF EXISTS `suggestion`;
+CREATE TABLE `suggestion` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(150) DEFAULT NULL,
+  `status` int(11) DEFAULT '0',
+  `detail` text,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of suggestion
+-- ----------------------------
+INSERT INTO `suggestion` VALUES ('1', 'hawkandeagle5@gmail.com', '1', '<p>12312312</p>', null, '2018-12-26 16:22:12', null);
+INSERT INTO `suggestion` VALUES ('2', 'hawkandeagle5@gmail.com', '1', '<p>หกฟหกฟหกฟหกหฟ</p>', null, '2018-12-26 16:23:18', null);
+INSERT INTO `suggestion` VALUES ('3', 'hawkandeagle5@gmail.com', '1', '<p>12312312</p>', '2018-12-26 16:11:10', '2018-12-26 16:23:22', null);
+
+-- ----------------------------
 -- Table structure for `users`
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
@@ -226,6 +248,6 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'All Project', 'hawkandeagle5@gmail.com', null, '$2y$10$QeulMq2Uj1YP2Of/6WekBeVtJ9cuWDRvm4u94ALG0QwY262NipJke', '0XvCY0go7TX8Yev9LhijO4LrvefdZfS3YLDQL0T3wNYhrA2tf9Sq0Uv7VhHS', null, '2018-12-16 10:50:39', '1', 'กทม', '1+1', '2', null, null, null);
+INSERT INTO `users` VALUES ('1', 'All Project', 'hawkandeagle5@gmail.com', null, '$2y$10$QeulMq2Uj1YP2Of/6WekBeVtJ9cuWDRvm4u94ALG0QwY262NipJke', 'c9fnP4K3yXvqYEge2EjIty63UDw16GZm0K5Ze3dtSgzJEA1QD0Z1QMakkFGt', null, '2018-12-16 10:50:39', '1', 'กทม', '1+1', '2', null, null, null);
 INSERT INTO `users` VALUES ('2', 'all proje3ct', 'hawkandeagle1@gmail.com', null, '$2y$2y$10$QeulMq2Uj1YP2Of/6WekBeVtJ9cuWDRvm4u94ALG0QwY262NipJke', 'id0ks2YNL1Ydt7PtGwX3fu44SD4QzDQA94b7YoWREBhm3BnfVWu3q2TawbDZ', null, '2018-12-16 10:25:49', '0', 'เพชรบูรณ์', '1+1', '2', null, null, null);
 INSERT INTO `users` VALUES ('3', 'HawkAndEagle Eagle', 'hawkandeagle2@gmail.com', null, '$2y$10$jpNzlbm7KFz/1RxUSDsxR.weXJQ0HJvhdkIUPa7ya58Hr1v5nyWta', 'U5RrF6xts7aZg32xBIarQl6JihH2W6dqarq15t6FJrt15hDmYQxW4Fc7WCiL', null, null, '0', 'เพชรบูรณ์', '1+1', '2', null, null, null);
